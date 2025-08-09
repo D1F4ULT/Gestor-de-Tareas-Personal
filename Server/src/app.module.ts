@@ -10,9 +10,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       imports: [ConfigModule],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
-        url: config.get('DATABASE_URL'), ¿
+        url: config.get('DATABASE_URL'), 
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true, ¿
+        synchronize: true, 
         ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
       }),
       inject: [ConfigService],
