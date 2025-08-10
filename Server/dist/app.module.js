@@ -10,24 +10,21 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const tasks_module_1 = require("./tasks/tasks-module");
-const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            config_1.ConfigModule.forRoot(),
-            typeorm_1.TypeOrmModule.forRootAsync({
-                imports: [config_1.ConfigModule],
-                useFactory: (config) => ({
-                    type: 'postgres',
-                    url: config.get('DATABASE_URL'),
-                    entities: [__dirname + '/**/*.entity{.ts,.js}'],
-                    synchronize: true,
-                    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
-                }),
-                inject: [config_1.ConfigService],
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'postgres',
+                host: 'localhost',
+                port: 5432,
+                username: 'postgres',
+                password: 'Oscar852456',
+                database: 'taskmanager',
+                entities: [__dirname + '/**/*.entity{.ts,.js}'],
+                synchronize: true,
             }),
             tasks_module_1.TasksModule,
         ],
