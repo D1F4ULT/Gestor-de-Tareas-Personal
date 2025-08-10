@@ -2,17 +2,18 @@ class Task {
   final int? id;
   final String title;
   final String description;
-  bool completed;
+  bool completed; // Cambiado de final a mutable
   final DateTime createdAt;
 
   Task({
     this.id,
     required this.title,
     this.description = '',
-    this.completed = false,
+    this.completed = false, // Ahora puede ser modificado
     DateTime? createdAt,
   }) : createdAt = createdAt ?? DateTime.now();
 
+  // Resto del código permanece igual...
   factory Task.fromJson(Map<String, dynamic> json) {
     return Task(
       id: json['id'],
